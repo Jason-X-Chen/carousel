@@ -48,8 +48,8 @@ define(['jquery'],function($){
 			this.carousel = $('<div class="carousel">');
 			this.pic = $('<div class="carousel-view">');
 			//这里用text()方法会解析错误
-			this.nextbtn = $('<span class="carousel-sidebtn carousel-sidebtn-prev">').html('&lt;');
-			this.prevbtn = $('<span class="carousel-sidebtn carousel-sidebtn-next">').html('&gt;');
+			this.prevbtn = $('<span class="carousel-sidebtn carousel-sidebtn-prev">').html('&lt;');
+			this.nextbtn = $('<span class="carousel-sidebtn carousel-sidebtn-next">').html('&gt;');
 			this.btmbtn = $('<div class="carousel-bottom">');
 			for(var i=0;i<len;i++){
 				picList+='<img src="'+cfg.src[i]+'" alt="" class="carousel-view-pic">';
