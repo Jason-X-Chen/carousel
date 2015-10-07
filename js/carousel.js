@@ -6,8 +6,8 @@ define(['jquery'],function($){
 			src:["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg","img/5.jpg"],
 			width:600,
 			height:400,
-			left:0,
-			top:0,
+			left:200,
+			top:100,
 			container:''
 		};
 		$.extend(this.cfg, cfg);
@@ -24,18 +24,15 @@ define(['jquery'],function($){
 			self.index++;
 			self.checkIndex();
 			self.picShow(self.index);
-			self.btnShow(self.index);
 		});
 		this.prevbtn.click(function(){
 			self.index--;
 			self.checkIndex();
 			self.picShow(self.index);
-			self.btnShow(self.index);
 		});
 		this.btmbtn.delegate('.carousel-bottom-btn', 'click', function() {
 			self.index = $(this).attr('data-index');
 			self.picShow(self.index);
-			self.btnShow(self.index);
 		});
 		this.autoPlay();
 		this.carousel.hover(function(){self.stopPlay();},function(){self.autoPlay();});
@@ -78,7 +75,11 @@ define(['jquery'],function($){
 			clearTimeout(self.timer);
 		},
 		picShow:function(index){
+			if(this.pic.children().is(':animated')){
+				return;
+			}
 			this.pic.children().eq(index).animate({opacity:1}, this.cfg.speed).siblings().animate({opacity:0}, this.cfg.speed);
+			this.btmbtn.children().eq(index).css({'background-color':'orange'}).siblings().css({'background-color':'#fff'});
 		},
 		//判断索引值是否为有效值
 		checkIndex:function() {
@@ -89,9 +90,6 @@ define(['jquery'],function($){
 				self.index = self.picLength-1;
 			}
 		},
-		btnShow:function(index){
-			this.btmbtn.children().eq(index).css({'background-color':'orange'}).siblings().css({'background-color':'#fff'});
-		}
 	}
 	return{
 		Carousel:Carousel
